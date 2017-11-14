@@ -8,7 +8,7 @@ import com.example.emanuelle.callingfromretrofit.model.Organization
 /**
  * Created by Emanuelle on 10/11/2017.
  */
-class OrganizationAdapter(val items: List<Organization>) :
+class OrganizationAdapter(val items: List<Organization>?) :
         RecyclerView.Adapter<OrganizationAdapter.ViewHolder>() {
 
 
@@ -18,10 +18,10 @@ class OrganizationAdapter(val items: List<Organization>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.textView.text = items[position].toString()
+        holder.textView.text = items?.get(position).toString()
     }
 
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = items?.size!!
 
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
