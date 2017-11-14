@@ -27,13 +27,10 @@ class MainActivity : AppCompatActivity() {
 
         ViewModelProviders.of(this)
                 .get(OrganizationViewModel::class.java)
-                .liveData.observe(this, object : Observer<List<Organization>> {
+                .liveData.observe(this, Observer<List<Organization>> { organization ->
+            if (organization != null) {
+                retrofit_list.adapter = OrganizationAdapter(organization)
 
-            override fun onChanged(@Nullable organization: List<Organization>?) {
-                if (organization != null) {
-                    retrofit_list.adapter = OrganizationAdapter(organization)
-
-                }
             }
         })
     }
